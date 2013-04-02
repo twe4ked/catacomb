@@ -8,7 +8,7 @@ main() {
       retrieve_keys "$1"
     fi
 
-    TMP_OUT="$(mktemp "${TMPDIR:-/tmp}/$(basename "$0")")"
+    TMP_OUT="$(mktemp "${TMPDIR:-/tmp}/$(basename "$0").XXXXXX")"
     trap '{ rm -f "$TMP_OUT"; }' EXIT
 
     if openssl rsautl -encrypt -pubin -inkey <(ssh-keygen -f "$PUBLIC_KEY" -e -m PKCS8) -ssl > "$TMP_OUT"; then
