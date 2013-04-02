@@ -2,16 +2,16 @@
 
 main() {
   if [[ -n "$1" ]]; then
-    PUBLIC_KEY=~/.ssh/$1.pem.pub
+    PUBLIC_KEY="$HOME/.ssh/$1.pub"
 
     if ! [[ -e "$PUBLIC_KEY" ]]; then
-      create_pem_from_github_username "$1"
+      retrieve_keys "$1"
     fi
 
     TMP_OUT="$(mktemp "${TMPDIR:-/tmp}/$(basename "$0")")"
     trap '{ rm -f "$TMP_OUT"; }' EXIT
 
-    if openssl rsautl -encrypt -pubin -inkey $PUBLIC_KEY -ssl > "$TMP_OUT"; then
+    if openssl rsautl -encrypt -pubin -inkey <(ssh-keygen -f "$PUBLIC_KEY" -e -m PKCS8) -ssl > "$TMP_OUT"; then
       echo "-- encrypted with catacomb <https://github.com/twe4ked/catacomb>"
       openssl base64 < "$TMP_OUT"
     fi
@@ -20,18 +20,13 @@ main() {
   fi
 }
 
-create_pem_from_github_username() {
-  TMP_KEY="$(mktemp "${TMPDIR:-/tmp}/$(basename "$0")")"
-  trap '{ rm -f "$TMP_KEY"; }' EXIT
+retrieve_keys() {
+  (curl -sf "https://github.com/${1}.keys" && echo) > "$HOME/.ssh/$1.pub"
 
-  (curl -sf "https://github.com/${1}.keys" | head -n 1 && echo) > $TMP_KEY
-
-  if [[ "$(grep ^ssh < "$TMP_KEY" | wc -l)" -lt 1 ]]; then
+  if [[ "$(grep ^ssh < "$HOME/.ssh/$1.pub" | wc -l)" -lt 1 ]]; then
     echo "Could not find any SSH key for $1" >&2
     exit 1
   fi
-
-  ssh-keygen -f $TMP_KEY -e -m PKCS8 > ~/.ssh/$1.pem.pub
 }
 
 main "$1"
