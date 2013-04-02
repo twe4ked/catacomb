@@ -8,9 +8,9 @@ main() {
       create_pem_from_github_username "$1"
     fi
 
-    openssl rsautl -encrypt -pubin -inkey $PUBLIC_KEY -ssl
+    openssl rsautl -encrypt -pubin -inkey $PUBLIC_KEY -ssl | openssl base64
   else
-    openssl rsautl -decrypt -inkey ~/.ssh/id_rsa
+    openssl base64 -d | openssl rsautl -decrypt -inkey ~/.ssh/id_rsa
   fi
 }
 
