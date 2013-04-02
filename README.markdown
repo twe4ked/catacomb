@@ -17,6 +17,11 @@ export PATH="$PATH:~/bin/"
 # the PATH will need to be set in your shell config
 ```
 
+## Notes
+
+* Encrypts using the first key retrieved from GitHub
+* Decrypts using `~/.ssh/id_rsa`
+
 ## Licence
 
 MIT.
