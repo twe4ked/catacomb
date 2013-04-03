@@ -17,6 +17,16 @@ export PATH="$PATH:~/bin/"
 # the PATH will need to be set in your shell config
 ```
 
+## Usage
+
+```
+# encrypt
+catacomb twe4ked < file.txt > encrypted.txt
+
+# decrypt
+catacomb < encrypted.txt
+```
+
 ## Notes
 
 * Encrypts using the first key retrieved from GitHub
