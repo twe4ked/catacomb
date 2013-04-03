@@ -19,11 +19,15 @@ export PATH="$PATH:~/bin/"
 
 ## Usage
 
-```
-# encrypt
-catacomb twe4ked < file.txt > encrypted.txt
+### Encrypting
 
-# decrypt
+```
+catacomb twe4ked < file.txt > encrypted.txt
+```
+
+### Decrypting
+
+```
 catacomb < encrypted.txt
 ```
 
