@@ -1,5 +1,8 @@
 # catacomb
 
+Encrypts content using public keys from GitHub.
+Encrypted files can then be decrypted using the matching `~/.ssh/id_rsa`.
+
 ## Installation
 
 Using [fresh], run the following:
