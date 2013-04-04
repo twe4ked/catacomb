@@ -25,7 +25,7 @@ export PATH="$PATH:~/bin/"
 ### Encrypting
 
 ```
-catacomb twe4ked < file.txt > encrypted.txt
+catacomb $recipients_github_username < file.txt > encrypted.txt
 ```
 
 ### Decrypting
