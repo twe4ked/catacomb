@@ -7,13 +7,13 @@ Encrypted files can then be decrypted using the matching `~/.ssh/id_rsa`.
 
 Using [fresh], run the following:
 
-```
+``` sh
 fresh twe4ked/catacomb bin/catacomb --bin
 ```
 
 Manually:
 
-```
+``` sh
 mkdir ~/bin/
 wget https://raw.github.com/twe4ked/catacomb/master/bin/catacomb ~/bin/catacomb
 export PATH="$PATH:~/bin/"
@@ -24,13 +24,13 @@ export PATH="$PATH:~/bin/"
 
 ### Encrypting
 
-```
+``` sh
 catacomb $recipients_github_username < file.txt > encrypted.txt
 ```
 
 ### Decrypting
 
-```
+``` sh
 catacomb < encrypted.txt
 ```
 
