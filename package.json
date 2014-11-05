@@ -1,0 +1,9 @@
+{
+  "name": "catacomb",
+  "version": "0.0.1",
+  "description": "Encrypts files using public keys from GitHub",
+  "global": "true",
+  "install": "install -b bin/catacomb /usr/local/bin/catacomb",
+  "scripts": [ "bin/catacomb" ]
+}
+
