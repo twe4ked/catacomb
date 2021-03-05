@@ -1,5 +1,10 @@
 #!/bin/bash -e
 
+# default osx openssl is broken, use the brew one if available
+if [ "$(uname)" == "Darwin" ] && BREW_PREFIX=$(brew --prefix openssl 2>/dev/null); then
+  PATH="$BREW_PREFIX/bin:$PATH"
+fi
+
 main() {
   if [[ -n "$1" ]]; then
     PUBLIC_KEY="$HOME/.ssh/$1.pub"

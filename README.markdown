@@ -20,6 +20,10 @@ export PATH="$PATH:~/bin/"
 # the PATH will need to be set in your shell config
 ```
 
+### OSX
+
+The built in openssl of osx is broken, showing a useless `Usage: rsautl [options]` message. If you add it via brew `brew install openssl@1.1` catacomb will use that one.
+
 ## Usage
 
 ### Encrypting
